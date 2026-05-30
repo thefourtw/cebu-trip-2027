@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>宿霧 × 薄荷島家庭旅遊 2027 · 七大三小</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  :root{
+    --primary:#0EA5E9; --primary-d:#0C7CB0; --secondary:#38BDF8;
+    --cta:#F97316; --bg:#F0F9FF; --ink:#0C4A6E; --muted:#5b7b8c;
+    --card:#ffffff; --sun:#FBBF24;
+  }
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:"Noto Sans TC",-apple-system,"PingFang TC","Microsoft JhengHei",sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.75; padding-bottom:48px;
+  }
+  .en{font-family:"Poppins","Noto Sans TC",sans-serif;}
+  .wrap{max-width:600px;margin:0 auto;}
+  img{display:block;width:100%;height:100%;object-fit:cover;}
+
+  /* HERO */
+  .hero{position:relative;height:430px;overflow:hidden;
+    background:linear-gradient(160deg,#0C7CB0,#0EA5E9 45%,#38BDF8);}
+  .hero>img{position:absolute;inset:0;}
+  .hero::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(8,60,90,.25) 0%,rgba(8,60,90,.15) 40%,rgba(8,60,90,.78) 100%);}
+  .hero-text{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:0 26px 34px;color:#fff;}
+  .hero-kicker{font-size:13px;letter-spacing:3px;opacity:.92;margin-bottom:8px;}
+  .hero h1{font-size:33px;font-weight:900;line-height:1.2;text-shadow:0 2px 14px rgba(0,0,0,.3);}
+  .hero h1 .accent{color:var(--sun);}
+  .hero-sub{font-size:15px;margin-top:8px;opacity:.95;}
+  .hero-date{display:inline-flex;align-items:center;gap:7px;margin-top:16px;
+    background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.4);
+    backdrop-filter:blur(4px);border-radius:999px;padding:9px 18px;font-weight:700;font-size:15px;}
+
+  /* INFO CHIPS */
+  .info{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;padding:20px 16px 6px;}
+  .chip{background:var(--card);border-radius:15px;padding:13px 8px;text-align:center;
+    box-shadow:0 5px 16px rgba(14,165,233,.10);}
+  .chip .ic{color:var(--primary);margin:0 auto 5px;display:block;}
+  .chip .label{font-size:11px;color:var(--muted);}
+  .chip .val{font-size:14px;font-weight:700;margin-top:1px;}
+
+  /* SECTION TITLE */
+  .sec{font-size:20px;font-weight:900;padding:30px 22px 4px;display:flex;align-items:center;gap:9px;}
+  .sec .bar{width:5px;height:22px;background:var(--cta);border-radius:3px;display:inline-block;}
+  .sec-note{font-size:13px;color:var(--muted);padding:0 22px 6px;}
+
+  /* FLIGHT CARD */
+  .flight{background:var(--card);margin:14px 16px;border-radius:18px;padding:18px 20px;
+    box-shadow:0 6px 20px rgba(12,74,110,.08);}
+  .flight h3{font-size:15px;font-weight:900;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+  .leg{display:flex;align-items:center;gap:10px;margin:9px 0;font-size:15px;}
+  .leg .pill{font-size:12px;font-weight:700;border-radius:8px;padding:3px 10px;flex-shrink:0;}
+  .pill.go{background:#e0f2fe;color:var(--primary-d);}
+  .pill.back{background:#ffedd5;color:#c2620e;}
+  .leg .route{font-weight:500;}
+  .leg .route b{font-weight:800;}
+
+  /* ALERT */
+  .alert{background:#fff7ed;border:1px solid #fed7aa;margin:14px 16px;border-radius:18px;padding:16px 20px;
+    box-shadow:0 6px 20px rgba(249,115,22,.08);}
+  .alert h3{font-size:15px;font-weight:900;color:#c2620e;margin-bottom:9px;display:flex;align-items:center;gap:8px;}
+  .alert ul{list-style:none;}
+  .alert li{font-size:14px;padding-left:22px;position:relative;margin:7px 0;color:#7c4a13;}
+  .alert li::before{content:"";position:absolute;left:4px;top:10px;width:7px;height:7px;border-radius:2px;background:var(--cta);transform:rotate(45deg);}
+
+  /* DAY CARD */
+  .day{background:var(--card);margin:16px 16px;border-radius:20px;overflow:hidden;
+    box-shadow:0 8px 24px rgba(12,74,110,.10);}
+  .day-photo{position:relative;height:178px;
+    background:linear-gradient(150deg,var(--primary-d),var(--primary) 55%,var(--secondary));}
+  .day-photo>img{position:absolute;inset:0;}
+  .day-photo::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(8,60,90,.28),rgba(8,60,90,.05) 45%,rgba(8,60,90,.62));}
+  .day-badge{position:absolute;top:13px;left:14px;z-index:2;
+    background:rgba(255,255,255,.92);color:var(--primary-d);border-radius:13px;
+    padding:6px 13px;font-weight:900;line-height:1;box-shadow:0 3px 10px rgba(0,0,0,.15);}
+  .day-badge .en{font-size:16px;}
+  .day-badge small{display:block;font-size:10px;font-weight:600;color:var(--muted);margin-top:2px;}
+  .day-pin{position:absolute;top:14px;right:14px;z-index:2;
+    background:rgba(12,74,110,.7);color:#fff;border-radius:999px;padding:5px 13px;font-size:12px;font-weight:700;backdrop-filter:blur(3px);}
+  .day-cap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:0 16px 13px;color:#fff;}
+  .day-cap .ttl{font-size:18.5px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.4);}
+  .tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;margin-left:7px;vertical-align:middle;}
+  .tag.relax{background:#cffafe;color:#0e7490;}
+  .tag.adv{background:var(--cta);color:#fff;}
+  .day-body{padding:15px 19px 19px;}
+  .day-body ul{list-style:none;}
+  .day-body li{position:relative;padding-left:23px;margin:9px 0;font-size:15px;}
+  .day-body li::before{content:"";position:absolute;left:3px;top:9px;width:9px;height:9px;border-radius:50%;
+    background:var(--secondary);border:2px solid #bae6fd;}
+  .note{background:#fff7ed;border-left:4px solid var(--cta);padding:10px 13px;border-radius:9px;margin-top:11px;font-size:13.5px;color:#8a5512;}
+  .note b{color:#dc2626;}
+
+  /* HOTEL CARD */
+  .hotel{background:var(--card);margin:16px 16px;border-radius:20px;overflow:hidden;box-shadow:0 8px 24px rgba(12,74,110,.10);}
+  .hotel-photo{position:relative;height:160px;background:linear-gradient(150deg,#0C7CB0,#38BDF8);}
+  .hotel-photo>img{position:absolute;inset:0;}
+  .hotel-photo .nights{position:absolute;top:13px;right:14px;background:var(--cta);color:#fff;font-size:12px;font-weight:800;border-radius:999px;padding:5px 13px;z-index:2;}
+  .hotel-body{padding:15px 19px 18px;}
+  .hotel-body h3{font-size:17px;font-weight:900;}
+  .hotel-body .loc{font-size:12.5px;color:var(--muted);margin:2px 0 9px;}
+  .feats{display:flex;flex-wrap:wrap;gap:7px;}
+  .feat{font-size:12px;background:#e0f2fe;color:var(--primary-d);border-radius:8px;padding:4px 10px;font-weight:600;}
+
+  /* BUDGET */
+  .budget{background:var(--card);margin:14px 16px;border-radius:20px;padding:6px 8px 12px;box-shadow:0 8px 24px rgba(12,74,110,.10);overflow:hidden;}
+  .budget table{width:100%;border-collapse:collapse;}
+  .budget td{padding:11px 14px;font-size:14.5px;border-bottom:1px solid #e6f4fb;}
+  .budget tr:last-child td{border-bottom:none;}
+  .budget td:last-child{text-align:right;font-weight:700;white-space:nowrap;}
+  .budget .total td{background:#ecfdf5;color:#047857;font-weight:900;font-size:16px;}
+
+  /* LIST CARD (food/tips) */
+  .listcard{background:var(--card);margin:14px 16px;border-radius:20px;padding:18px 21px;box-shadow:0 8px 24px rgba(12,74,110,.10);}
+  .listcard h3{font-size:16px;font-weight:900;margin-bottom:11px;display:flex;align-items:center;gap:8px;}
+  .listcard li{list-style:none;position:relative;padding-left:25px;margin:8px 0;font-size:14.5px;}
+  .listcard li svg{position:absolute;left:0;top:3px;color:var(--primary);}
+  .listcard li b{color:var(--ink);}
+
+  .foot{text-align:center;color:var(--muted);font-size:13px;padding:30px 22px 6px;}
+  .foot .big{font-size:18px;font-weight:900;color:var(--primary-d);margin-bottom:5px;}
+
+  @media(prefers-reduced-motion:no-preference){
+    .day,.hotel,.flight,.alert,.budget,.listcard{animation:rise .6s ease both;}
+    @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+  }
+  svg{flex-shrink:0;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO -->
+  <header class="hero">
+    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=70" alt="菲律賓熱帶海島綠松石色海水沙灘" onerror="this.style.display='none'" loading="eager">
+    <div class="hero-text">
+      <div class="hero-kicker en">CEBU × BOHOL · PHILIPPINES</div>
+      <h1>宿霧 × <span class="accent">薄荷島</span><br>家庭旅遊</h1>
+      <div class="hero-sub">七大三小，一起去曬太陽、看鯨鯊、玩水放鬆 🐠</div>
+      <div class="hero-date en">2027 / 01 / 23 – 01 / 28</div>
+    </div>
+  </header>
+
+  <!-- INFO -->
+  <section class="info">
+    <div class="chip">
+      <svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      <div class="label">天數</div><div class="val">6 天 5 晚</div>
+    </div>
+    <div class="chip">
+      <svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <div class="label">成員</div><div class="val">7 大 3 小</div>
+    </div>
+    <div class="chip">
+      <svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
+      <div class="label">航班</div><div class="val">星宇直飛</div>
+    </div>
+    <div class="chip">
+      <svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/><path d="M9 9v.01M9 12v.01M9 15v.01"/></svg>
+      <div class="label">住宿</div><div class="val">薄荷+宿霧</div>
+    </div>
+  </section>
+
+  <!-- FLIGHT -->
+  <section class="flight">
+    <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0EA5E9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>星宇航空 · 直飛宿霧</h3>
+    <div class="leg"><span class="pill go">去程</span><span class="route"><b>1/23（六）</b> 桃園 06:55 → 宿霧 09:50</span></div>
+    <div class="leg"><span class="pill back">回程</span><span class="route"><b>1/28（四）</b> 宿霧 10:50 → 桃園 13:40</span></div>
+  </section>
+
+  <!-- ALERT 鯨鯊 -->
+  <section class="alert">
+    <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>賞鯨鯊三個必知</h3>
+    <ul>
+      <li>薄荷島 Lila 鯨鯊 <b>2025/2 起官方暫停</b>，2027 出發前要再確認是否恢復</li>
+      <li>未滿 7 歲不能下水，<b>2 歲只能岸上看</b>（安排一位大人陪），9 歲可下水</li>
+      <li>清晨出發、離 Panglao 約 1.5 小時（比 Oslob 的 3–4 小時輕鬆很多）</li>
+    </ul>
+  </section>
+
+  <!-- DAILY -->
+  <h2 class="sec"><span class="bar"></span>每日行程</h2>
+
+  <!-- DAY 1 -->
+  <article class="day">
+    <div class="day-photo">
+      <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=1000&q=70" alt="薄荷島 Panglao 椰林白沙灘" onerror="this.style.display='none'" loading="lazy">
+      <div class="day-badge"><span class="en">Day 1</span><small>抵達</small></div>
+      <div class="day-pin">1/23（六）</div>
+      <div class="day-cap"><div class="ttl">抵達 → 搭船去薄荷島<span class="tag relax">輕鬆</span></div></div>
+    </div>
+    <div class="day-body"><ul>
+      <li>09:50 抵達宿霧，專車到碼頭搭 OceanJet 快船去薄荷島（約 2 小時）</li>
+      <li>下午 Panglao 飯店 check in、Alona 海灘放鬆</li>
+      <li>晚餐：Bee Farm 有機海景料理</li>
+    </ul></div>
+  </article>
+
+  <!-- DAY 2 -->
+  <article class="day">
+    <div class="day-photo">
+      <img src="https://images.unsplash.com/photo-1560275619-4662e36fa65c?auto=format&fit=crop&w=1000&q=70" alt="與鯨鯊在海中共游" onerror="this.style.display='none'" loading="lazy">
+      <div class="day-badge"><span class="en">Day 2</span><small>鯨鯊</small></div>
+      <div class="day-pin">1/24（日）</div>
+      <div class="day-cap"><div class="ttl">薄荷島賞鯨鯊 + 海豚<span class="tag adv">早起</span></div></div>
+    </div>
+    <div class="day-body"><ul>
+      <li>清晨出發 Lila 賞鯨鯊（離 Panglao 約 1.5 小時）</li>
+      <li>出海看成群海豚（spinner dolphin，機率高）</li>
+      <li>Loboc 河上餐廳遊船午餐，邊吃邊看河景</li>
+    </ul>
+    <div class="note">🔸 <b>2 歲岸上陪等</b>，9 歲可下水（穿救生衣、不擦防曬）。鯨鯊 2027 需先確認是否開放。</div>
+    </div>
+  </article>
+
+  <!-- DAY 3 -->
+  <article class="day">
+    <div class="day-photo">
+      <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1000&q=70" alt="珊瑚礁浮潛熱帶魚群" onerror="this.style.display='none'" loading="lazy">
+      <div class="day-badge"><span class="en">Day 3</span><small>浮潛</small></div>
+      <div class="day-pin">1/25（一）</div>
+      <div class="day-cap"><div class="ttl">巴里卡薩大斷層 + 處女島<span class="tag adv">浮潛</span></div></div>
+    </div>
+    <div class="day-body"><ul>
+      <li>巴里卡薩 Balicasag 島大斷層浮潛（世界級潛點，看海龜、珊瑚、魚群）</li>
+      <li>大小處女島退潮沙洲，絕美淺灘戲水</li>
+      <li>2 歲在淺灘 / 船上玩水</li>
+    </ul></div>
+  </article>
+
+  <!-- DAY 4 -->
+  <article class="day">
+    <div class="day-photo">
+      <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1000&q=70" alt="宿霧度假村泳池別墅" onerror="this.style.display='none'" loading="lazy">
+      <div class="day-badge"><span class="en">Day 4</span><small>移動</small></div>
+      <div class="day-pin">1/26（二）</div>
+      <div class="day-cap"><div class="ttl">回宿霧 Crimson + Lechon 聚餐<span class="tag relax">入住</span></div></div>
+    </div>
+    <div class="day-body"><ul>
+      <li>上午快船回宿霧 → 入住 Crimson 3 棟 Pool Villa</li>
+      <li>下午 villa 私人泳池、私人海灘放鬆</li>
+      <li>晚上全團大聚餐：宿霧名菜烤乳豬 Lechon</li>
+    </ul></div>
+  </article>
+
+  <!-- DAY 5 -->
+  <article class="day">
+    <div class="day-photo">
+      <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1000&q=70" alt="度假村泳池棕櫚樹放鬆" onerror="this.style.display='none'" loading="lazy">
+      <div class="day-badge"><span class="en">Day 5</span><small>耍廢</small></div>
+      <div class="day-pin">1/27（三）</div>
+      <div class="day-cap"><div class="ttl">宿霧度假村放鬆 + SPA<span class="tag relax">耍廢</span></div></div>
+    </div>
+    <div class="day-body"><ul>
+      <li>選配：宿霧跳島浮潛（資生堂島+娜魯蘇安島、SUP）</li>
+      <li>或度假村耍廢：泳池、SPA、兒童俱樂部（小孩免費）</li>
+      <li>下午整理行李、補買伴手禮</li>
+    </ul>
+    <div class="note">🔸 隔天早班機，今天早點睡（飯店離機場才 10 分鐘，不緊張）。</div>
+    </div>
+  </article>
+
+  <!-- DAY 6 -->
+  <article class="day">
+    <div class="day-photo">
+      <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1000&q=70" alt="飛機在雲層上飛行回家" onerror="this.style.display='none'" loading="lazy">
+      <div class="day-badge"><span class="en">Day 6</span><small>賦歸</small></div>
+      <div class="day-pin">1/28（四）</div>
+      <div class="day-cap"><div class="ttl">回家<span class="tag adv">早班機</span></div></div>
+    </div>
+    <div class="day-body"><ul>
+      <li>約 06:30 起床退房、07:30 出發（飯店離機場 10 分鐘）</li>
+      <li>回程 10:50 宿霧起飛 → 13:40 回到桃園</li>
+      <li>帶著滿滿回憶回台灣 ❤️</li>
+    </ul></div>
+  </article>
+
+  <!-- HOTELS -->
+  <h2 class="sec"><span class="bar"></span>住宿安排</h2>
+  <p class="sec-note">前段薄荷島玩水、後段宿霧 villa 放鬆收尾</p>
+
+  <article class="hotel">
+    <div class="hotel-photo">
+      <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=1000&q=70" alt="薄荷島 Panglao 海邊度假村" onerror="this.style.display='none'" loading="lazy">
+      <div class="nights">Day 1–3 · 3 晚</div>
+    </div>
+    <div class="hotel-body">
+      <h3>薄荷島 Panglao 度假村</h3>
+      <div class="loc">建議 Henann 系列 / South Palms（待訂）· Panglao 島</div>
+      <div class="feats"><span class="feat">海灘步行可達</span><span class="feat">家庭房</span><span class="feat">泳池</span><span class="feat">賞鯨鯊出發點</span></div>
+    </div>
+  </article>
+
+  <article class="hotel">
+    <div class="hotel-photo">
+      <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1000&q=70" alt="宿霧 Crimson 私人泳池別墅" onerror="this.style.display='none'" loading="lazy">
+      <div class="nights">Day 4–5 · 2 晚</div>
+    </div>
+    <div class="hotel-body">
+      <h3>宿霧 Crimson Pool Villa</h3>
+      <div class="loc">3 棟私人泳池別墅 · Mactan 島（離機場 10 分）</div>
+      <div class="feats"><span class="feat">每棟私人泳池</span><span class="feat">私人海灘</span><span class="feat">兒童俱樂部免費</span><span class="feat">趕早班機方便</span></div>
+    </div>
+  </article>
+
+  <!-- BUDGET -->
+  <h2 class="sec"><span class="bar"></span>預算粗估</h2>
+  <p class="sec-note">全團 10 人，不含機票（台幣，實際以下訂為準）</p>
+  <section class="budget">
+    <table>
+      <tr><td>薄荷島度假村 3 晚（家庭房）</td><td>4–7 萬</td></tr>
+      <tr><td>宿霧 Crimson 3 棟 Villa × 2 晚</td><td>5–7 萬</td></tr>
+      <tr><td>宿霧 ↔ 薄荷島快船（來回）</td><td>1.2–1.8 萬</td></tr>
+      <tr><td>鯨鯊 + 海豚 + 大斷層浮潛</td><td>3–5 萬</td></tr>
+      <tr><td>機場接送 + 跳島 + SPA + 包車</td><td>2–3 萬</td></tr>
+      <tr><td>餐食（含 Lechon 大餐）</td><td>4–5 萬</td></tr>
+      <tr class="total"><td>合計</td><td>約 19–29 萬</td></tr>
+    </table>
+  </section>
+
+  <!-- FOOD -->
+  <h2 class="sec"><span class="bar"></span>在地美食</h2>
+  <div class="listcard">
+    <h3>🍽️ 一定要吃</h3>
+    <ul>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 2v7c0 1.1.9 2 2 2h2a2 2 0 0 0 2-2V2M7 2v20M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg><b>Lechon 烤乳豬</b>：宿霧招牌，皮脆肉嫩</li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 2v7c0 1.1.9 2 2 2h2a2 2 0 0 0 2-2V2M7 2v20M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg><b>海鮮三吃</b>：現流海鮮蒸／烤／酸湯</li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 2v7c0 1.1.9 2 2 2h2a2 2 0 0 0 2-2V2M7 2v20M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg><b>Jollibee</b>：菲律賓國民速食，小朋友最愛</li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 2v7c0 1.1.9 2 2 2h2a2 2 0 0 0 2-2V2M7 2v20M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg><b>Halo-halo 刨冰</b>＆新鮮芒果奶昔，消暑又便宜</li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0"/></svg>伴手禮：<b>7D 芒果乾</b>、Otap 千層酥</li>
+    </ul>
+  </div>
+
+  <!-- TIPS -->
+  <h2 class="sec"><span class="bar"></span>行前提醒</h2>
+  <div class="listcard">
+    <h3>🎒 出發前記得</h3>
+    <ul>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>護照效期 6 個月以上，先辦好菲律賓簽證 / 入境文件</li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>防曬乳、防蚊液、太陽眼鏡、帽子（1 月很曬）</li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>小朋友泳具、救生衣、暈船藥（出海＋搭船多）</li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>換好披索現金，海島小店多收現金</li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>常備藥、兒童藥品自己帶，務必保旅遊平安險</li>
+    </ul>
+  </div>
+
+  <footer class="foot">
+    <div class="big">宿霧 × 薄荷島，我們來囉！🐚</div>
+    一起去看鯨鯊、玩水、曬太陽～<br>
+    行程細節之後可能微調，以群組最新公告為準
+  </footer>
+
+</div>
+</body>
+</html>
