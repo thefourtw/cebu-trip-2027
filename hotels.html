@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>薄荷島飯店比較 · 一起選</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  :root{--primary:#0EA5E9;--primary-d:#0C7CB0;--secondary:#38BDF8;--cta:#F97316;
+    --bg:#F0F9FF;--ink:#0C4A6E;--muted:#5b7b8c;--card:#fff;--sun:#FBBF24;--gold:#F59E0B;}
+  html{scroll-behavior:smooth;}
+  body{font-family:"Noto Sans TC",-apple-system,"PingFang TC","Microsoft JhengHei",sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.7;padding-bottom:48px;}
+  .en{font-family:"Poppins","Noto Sans TC",sans-serif;}
+  .wrap{max-width:600px;margin:0 auto;}
+  img{display:block;width:100%;height:100%;object-fit:cover;}
+  a{color:inherit;text-decoration:none;}
+
+  .hero{position:relative;height:240px;overflow:hidden;background:linear-gradient(160deg,#0C7CB0,#0EA5E9 50%,#38BDF8);}
+  .hero>img{position:absolute;inset:0;}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,60,90,.2),rgba(8,60,90,.72));}
+  .hero-text{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:0 24px 26px;color:#fff;}
+  .hero .kick{font-size:12px;letter-spacing:3px;opacity:.9;}
+  .hero h1{font-size:27px;font-weight:900;margin-top:6px;text-shadow:0 2px 12px rgba(0,0,0,.3);}
+  .hero p{font-size:14px;margin-top:6px;opacity:.95;}
+
+  .howto{background:var(--card);margin:18px 16px 6px;border-radius:18px;padding:18px 20px;box-shadow:0 6px 20px rgba(12,74,110,.08);}
+  .howto h2{font-size:16px;font-weight:900;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+  .howto .row{display:flex;gap:11px;align-items:flex-start;margin:11px 0;font-size:14.5px;}
+  .howto .row .k{flex-shrink:0;font-weight:800;color:var(--cta);}
+
+  .tablewrap{margin:14px 16px;border-radius:18px;overflow:hidden;box-shadow:0 6px 20px rgba(12,74,110,.08);background:var(--card);}
+  .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  table{border-collapse:collapse;width:100%;min-width:520px;font-size:13px;}
+  th,td{padding:10px 12px;text-align:center;border-bottom:1px solid #e6f4fb;white-space:nowrap;}
+  th{background:var(--primary-d);color:#fff;font-weight:700;position:sticky;left:0;}
+  th:first-child,td:first-child{text-align:left;position:sticky;left:0;background:#f0f9ff;font-weight:700;z-index:1;}
+  thead th{position:static;}
+  td.best{color:#047857;font-weight:800;}
+  .scroll-hint{font-size:12px;color:var(--muted);text-align:center;padding:8px;}
+
+  .sec{font-size:20px;font-weight:900;padding:28px 22px 8px;display:flex;align-items:center;gap:9px;}
+  .sec .bar{width:5px;height:22px;background:var(--cta);border-radius:3px;}
+
+  .hcard{background:var(--card);margin:16px 16px;border-radius:20px;overflow:hidden;box-shadow:0 8px 24px rgba(12,74,110,.10);}
+  .hcard-photo{position:relative;height:190px;background:linear-gradient(150deg,var(--primary-d),var(--secondary));}
+  .hcard-photo>img{position:absolute;inset:0;}
+  .hcard-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,60,90,.12),rgba(8,60,90,.55));}
+  .rank{position:absolute;top:13px;left:14px;z-index:2;font-size:13px;font-weight:900;color:#fff;border-radius:11px;padding:6px 13px;box-shadow:0 3px 10px rgba(0,0,0,.2);}
+  .rank.pick{background:linear-gradient(135deg,var(--gold),#f97316);}
+  .rank.alt{background:rgba(12,74,110,.78);backdrop-filter:blur(3px);}
+  .stars{position:absolute;top:14px;right:14px;z-index:2;font-size:13px;color:var(--sun);background:rgba(0,0,0,.35);border-radius:999px;padding:4px 10px;backdrop-filter:blur(3px);}
+  .hcard-name{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:0 16px 12px;color:#fff;}
+  .hcard-name .n{font-size:20px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.4);}
+  .hcard-name .loc{font-size:12.5px;opacity:.95;}
+  .hcard-body{padding:15px 19px 18px;}
+  .price{display:flex;align-items:baseline;gap:8px;margin-bottom:12px;}
+  .price .big{font-size:23px;font-weight:900;color:var(--cta);}
+  .price .unit{font-size:12px;color:var(--muted);}
+  .kv{display:flex;gap:10px;margin:7px 0;font-size:14px;}
+  .kv .ic{flex-shrink:0;color:var(--primary);margin-top:3px;}
+  .pros{margin-top:12px;}
+  .pros .ln{font-size:13.5px;margin:5px 0;padding-left:22px;position:relative;}
+  .pros .ln.plus::before{content:"＋";position:absolute;left:2px;color:#059669;font-weight:900;}
+  .pros .ln.minus::before{content:"－";position:absolute;left:3px;color:#dc2626;font-weight:900;}
+  .btns{display:flex;gap:9px;margin-top:15px;}
+  .btn{flex:1;text-align:center;padding:12px;border-radius:12px;font-weight:800;font-size:14px;cursor:pointer;transition:opacity .2s,transform .15s;display:flex;align-items:center;justify-content:center;gap:6px;}
+  .btn:active{transform:scale(.97);}
+  .btn-book{background:var(--cta);color:#fff;}
+  .btn-site{background:#e0f2fe;color:var(--primary-d);}
+  .btn:hover{opacity:.9;}
+
+  .crimson-card{background:linear-gradient(135deg,#0C7CB0,#0EA5E9);color:#fff;margin:16px 16px;border-radius:20px;padding:20px;box-shadow:0 8px 24px rgba(12,74,110,.18);}
+  .crimson-card .tag2{font-size:12px;font-weight:700;background:rgba(255,255,255,.22);border-radius:999px;padding:4px 11px;display:inline-block;}
+  .crimson-card h3{font-size:19px;font-weight:900;margin:9px 0 4px;}
+  .crimson-card p{font-size:14px;opacity:.95;}
+  .crimson-card .ok{margin-top:10px;font-size:13.5px;}
+
+  .foot{text-align:center;color:var(--muted);font-size:13px;padding:28px 22px 6px;}
+  .foot .big{font-size:17px;font-weight:900;color:var(--primary-d);margin-bottom:5px;}
+  svg{flex-shrink:0;}
+  @media(prefers-reduced-motion:no-preference){.hcard,.howto,.tablewrap{animation:rise .6s ease both;}
+    @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=1000&q=70" alt="薄荷島海邊度假村" onerror="this.style.display='none'">
+    <div class="hero-text">
+      <div class="kick en">BOHOL · PANGLAO HOTELS</div>
+      <h1>薄荷島飯店比較</h1>
+      <p>前段 3 晚（1/23–1/26）住哪間？大家一起選 🏝️</p>
+    </div>
+  </header>
+
+  <section class="howto">
+    <h2><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>30 秒怎麼選</h2>
+    <div class="row"><span class="k">想省錢省事</span><span>→ <b>Henann Alona</b>：2 間房裝 10 人、住出海口、最便宜（首選）</span></div>
+    <div class="row"><span class="k">小孩要玩好</span><span>→ <b>Bluewater</b>：有兒童俱樂部+遊樂場+好評兒童池</span></div>
+    <div class="row"><span class="k">要最美沙灘</span><span>→ <b>South Palms</b>：超長私人白沙、最有質感（也最貴）</span></div>
+    <div class="row"><span class="k">撿到特價再考慮</span><span>→ <b>Bellevue</b>：離出海點最遠</span></div>
+  </section>
+
+  <div class="tablewrap">
+    <div class="scroll">
+      <table>
+        <thead><tr><th>比較</th><th>Henann 🥇</th><th>Bluewater</th><th>South Palms</th><th>Bellevue</th></tr></thead>
+        <tbody>
+          <tr><td>3 晚估價</td><td class="best">3–4.4 萬</td><td>4.5–6.4 萬</td><td>6.3–8.6 萬</td><td>3.7–6.9 萬</td></tr>
+          <tr><td>要開幾間</td><td class="best">2 間</td><td>3 間</td><td>3–4 間</td><td>3–4 間</td></tr>
+          <tr><td>離出海點</td><td class="best">就在這</td><td>10–15 分</td><td>5–10 分</td><td>15–20 分</td></tr>
+          <tr><td>自家海灘</td><td>公共(熱鬧)</td><td>私人(佳)</td><td class="best">私人白沙(最佳)</td><td>普通</td></tr>
+          <tr><td>兒童俱樂部</td><td>—</td><td class="best">有+遊樂場</td><td>兒童池</td><td>有</td></tr>
+          <tr><td>泳池</td><td>3 座</td><td>2 座+兒童池</td><td>無邊際+兒童</td><td>大池+兒童</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="scroll-hint">← 左右滑動看完整比較 →</div>
+  </div>
+
+  <h2 class="sec"><span class="bar"></span>四間細看</h2>
+
+  <!-- HENANN -->
+  <article class="hcard">
+    <div class="hcard-photo">
+      <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=1000&q=70" alt="Henann Alona Beach 椰林沙灘" onerror="this.style.display='none'">
+      <div class="rank pick">🥇 首選 · CP 最高</div>
+      <div class="stars">★★★★★</div>
+      <div class="hcard-name"><div class="n">Henann Resort Alona Beach</div><div class="loc">Alona 海灘第一排 · 5 星旗艦</div></div>
+    </div>
+    <div class="hcard-body">
+      <div class="price"><span class="big">NT$3–4.4 萬</span><span class="unit">/ 3 晚（2 間 Family Room）</span></div>
+      <div class="kv"><svg class="ic" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/></svg><span><b>配房</b>：2 間 Family Room（各睡 5 人）剛好 10 人</span></div>
+      <div class="kv"><svg class="ic" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="M2 12h20"/></svg><span><b>出海</b>：賞鯨鯊/浮潛從 Alona 出發，住這走路到</span></div>
+      <div class="pros">
+        <div class="ln plus">房數最少最好管、總價最低</div>
+        <div class="ln plus">帶 2 歲不用每天拉車去碼頭</div>
+        <div class="ln minus">Alona 是公共沙灘、旺季人多</div>
+      </div>
+      <div class="btns">
+        <a class="btn btn-book" href="https://www.booking.com/hotel/ph/henann-beach-alona-beach.html" target="_blank" rel="noopener">看 Booking</a>
+        <a class="btn btn-site" href="https://www.henann.com/bohol/" target="_blank" rel="noopener">官網</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- BLUEWATER -->
+  <article class="hcard">
+    <div class="hcard-photo">
+      <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1000&q=70" alt="Bluewater Panglao 度假村泳池" onerror="this.style.display='none'">
+      <div class="rank alt">備案 · 親子設施最齊</div>
+      <div class="stars">★★★★☆</div>
+      <div class="hcard-name"><div class="n">Bluewater Panglao</div><div class="loc">Danao 私人海灘 · 4.5 星親子</div></div>
+    </div>
+    <div class="hcard-body">
+      <div class="price"><span class="big">NT$4.5–6.4 萬</span><span class="unit">/ 3 晚（2 Loft + 1 房）</span></div>
+      <div class="kv"><svg class="ic" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/></svg><span><b>配房</b>：Family Loft（4 人/可連通）+ 1 房</span></div>
+      <div class="kv"><svg class="ic" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11a3 3 0 1 0 6 0 3 3 0 0 0-6 0z"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg><span><b>小孩</b>：Kids Club + 遊樂場 + 好評兒童池</span></div>
+      <div class="pros">
+        <div class="ln plus">親子硬體最完整、3 個小孩有得玩</div>
+        <div class="ln plus">私人海灘、Loft 可連通成兩房套房</div>
+        <div class="ln minus">離 Alona 出海點 10–15 分要接駁</div>
+      </div>
+      <div class="btns">
+        <a class="btn btn-book" href="https://www.booking.com/hotel/ph/bluewater-panglao-resort.html" target="_blank" rel="noopener">看 Booking</a>
+        <a class="btn btn-site" href="https://bluewaterpanglao.com.ph/" target="_blank" rel="noopener">官網</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- SOUTH PALMS -->
+  <article class="hcard">
+    <div class="hcard-photo">
+      <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1000&q=70" alt="South Palms 無邊際泳池私人海灘" onerror="this.style.display='none'">
+      <div class="rank alt">備案 · 海灘最美</div>
+      <div class="stars">★★★★★</div>
+      <div class="hcard-name"><div class="n">South Palms Resort</div><div class="loc">Bolod 超長私人白沙 · 5 星精品</div></div>
+    </div>
+    <div class="hcard-body">
+      <div class="price"><span class="big">NT$6.3–8.6 萬</span><span class="unit">/ 3 晚（3–4 間 Deluxe）</span></div>
+      <div class="kv"><svg class="ic" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 18s2-4 10-4 10 4 10 4M12 6v8M8 9l4-3 4 3"/></svg><span><b>海灘</b>：薄荷島最長私人白沙之一，2 歲玩沙最安全</span></div>
+      <div class="kv"><svg class="ic" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/></svg><span><b>配房</b>：沒大房，要開 3–4 間 Deluxe</span></div>
+      <div class="pros">
+        <div class="ln plus">私人沙灘+無邊際泳池、質感最高</div>
+        <div class="ln minus">總價最高、要開最多房</div>
+        <div class="ln minus">出海要接駁去 Alona</div>
+      </div>
+      <div class="btns">
+        <a class="btn btn-book" href="https://www.booking.com/hotel/ph/south-palms-resort-and-spa-panglao-mgallery-collection.html" target="_blank" rel="noopener">看 Booking</a>
+        <a class="btn btn-site" href="https://www.southpalmsresort.com/" target="_blank" rel="noopener">官網</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- BELLEVUE -->
+  <article class="hcard">
+    <div class="hcard-photo">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=70" alt="Bellevue Bohol 海景度假村" onerror="this.style.display='none'">
+      <div class="rank alt">備案 · 撿特價才考慮</div>
+      <div class="stars">★★★☆☆</div>
+      <div class="hcard-name"><div class="n">The Bellevue Resort</div><div class="loc">Doljo 區 · 5 星 · 離出海點最遠</div></div>
+    </div>
+    <div class="hcard-body">
+      <div class="price"><span class="big">NT$3.7–6.9 萬</span><span class="unit">/ 3 晚（3–4 間房）</span></div>
+      <div class="kv"><svg class="ic" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="M2 12h20"/></svg><span><b>位置</b>：離 Alona 出海點 15–20 分、四間裡最遠</span></div>
+      <div class="kv"><svg class="ic" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11a3 3 0 1 0 6 0 3 3 0 0 0-6 0z"/><path d="M12 2v2M12 20v2"/></svg><span><b>小孩</b>：有 Kids Club、大泳池+兒童池</span></div>
+      <div class="pros">
+        <div class="ln plus">淡旺價差大，撿到特價很划算</div>
+        <div class="ln minus">離出海點最遠、每天拉車較累</div>
+        <div class="ln minus">沙灘普通（非主打私人白沙）</div>
+      </div>
+      <div class="btns">
+        <a class="btn btn-book" href="https://www.booking.com/hotel/ph/the-belleview-resort.html" target="_blank" rel="noopener">看 Booking</a>
+        <a class="btn btn-site" href="https://thebellevuebohol.com/" target="_blank" rel="noopener">官網</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- CRIMSON 後段 -->
+  <h2 class="sec"><span class="bar"></span>後段宿霧（已定）</h2>
+  <div class="crimson-card">
+    <span class="tag2">Day 4–5 · 2 晚</span>
+    <h3>宿霧 Crimson Pool Villa</h3>
+    <p>後兩晚回宿霧 Mactan，住 3 棟私人泳池別墅放鬆收尾。</p>
+    <div class="ok">✓ 每棟私人泳池　✓ 私人海灘　✓ 兒童俱樂部免費　✓ 離機場 10 分鐘、趕早班機方便</div>
+    <div class="btns" style="margin-top:14px;">
+      <a class="btn" style="background:#fff;color:#0C7CB0;flex:1;" href="https://www.booking.com/hotel/ph/crimson-resort-spa-mactan.html" target="_blank" rel="noopener">看 Booking</a>
+    </div>
+  </div>
+
+  <footer class="foot">
+    <div class="big">大家投票選一間吧！🗳️</div>
+    房價為旺季參考估計，實際以 Booking 當天為準<br>
+    1 月近農曆年是旺季，建議提早 3–4 個月訂、要相鄰房
+  </footer>
+
+</div>
+</body>
+</html>
