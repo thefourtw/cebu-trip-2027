@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cebu × Bohol Private Charter — Quote Request 2027 · 7 Adults 3 Kids</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  :root{
+    --primary:#0EA5E9; --primary-d:#0C7CB0; --secondary:#38BDF8;
+    --cta:#F97316; --bg:#F0F9FF; --ink:#0C4A6E; --muted:#5b7b8c;
+    --card:#ffffff; --sun:#FBBF24;
+  }
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:"Poppins","Noto Sans TC",-apple-system,"Segoe UI",sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.7; padding-bottom:48px;
+  }
+  .en{font-family:"Poppins","Noto Sans TC",sans-serif;}
+  .wrap{max-width:600px;margin:0 auto;}
+  img{display:block;width:100%;height:100%;object-fit:cover;}
+
+  /* HERO */
+  .hero{position:relative;height:430px;overflow:hidden;
+    background:linear-gradient(160deg,#0C7CB0,#0EA5E9 45%,#38BDF8);}
+  .hero>img{position:absolute;inset:0;}
+  .hero::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(8,60,90,.25) 0%,rgba(8,60,90,.15) 40%,rgba(8,60,90,.78) 100%);}
+  .hero-text{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:0 26px 34px;color:#fff;}
+  .hero-kicker{font-size:13px;letter-spacing:3px;opacity:.92;margin-bottom:8px;}
+  .hero h1{font-size:33px;font-weight:800;line-height:1.2;text-shadow:0 2px 14px rgba(0,0,0,.3);}
+  .hero h1 .accent{color:var(--sun);}
+  .hero-sub{font-size:15px;margin-top:10px;opacity:.95;line-height:1.5;}
+  .hero-date{display:inline-flex;align-items:center;gap:7px;margin-top:16px;
+    background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.4);
+    backdrop-filter:blur(4px);border-radius:999px;padding:9px 18px;font-weight:700;font-size:15px;}
+
+  /* INFO CHIPS */
+  .info{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;padding:20px 16px 6px;}
+  .chip{background:var(--card);border-radius:15px;padding:13px 8px;text-align:center;
+    box-shadow:0 5px 16px rgba(14,165,233,.10);}
+  .chip .ic{color:var(--primary);margin:0 auto 5px;display:block;}
+  .chip .label{font-size:11px;color:var(--muted);}
+  .chip .val{font-size:13px;font-weight:700;margin-top:1px;}
+
+  /* SECTION TITLE */
+  .sec{font-size:20px;font-weight:800;padding:30px 22px 4px;display:flex;align-items:center;gap:9px;}
+  .sec .bar{width:5px;height:22px;background:var(--cta);border-radius:3px;display:inline-block;}
+  .sec-note{font-size:13px;color:var(--muted);padding:0 22px 6px;}
+
+  /* FLIGHT CARD */
+  .flight{background:var(--card);margin:14px 16px;border-radius:18px;padding:18px 20px;
+    box-shadow:0 6px 20px rgba(12,74,110,.08);}
+  .flight h3{font-size:15px;font-weight:800;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+  .leg{display:flex;align-items:center;gap:10px;margin:9px 0;font-size:14.5px;}
+  .leg .pill{font-size:12px;font-weight:700;border-radius:8px;padding:3px 10px;flex-shrink:0;}
+  .pill.go{background:#e0f2fe;color:var(--primary-d);}
+  .pill.back{background:#ffedd5;color:#c2620e;}
+  .leg .route{font-weight:500;}
+  .leg .route b{font-weight:800;}
+
+  /* ALERT */
+  .alert{background:#fff7ed;border:1px solid #fed7aa;margin:14px 16px;border-radius:18px;padding:16px 20px;
+    box-shadow:0 6px 20px rgba(249,115,22,.08);}
+  .alert h3{font-size:15px;font-weight:800;color:#c2620e;margin-bottom:9px;display:flex;align-items:center;gap:8px;}
+  .alert ul{list-style:none;}
+  .alert li{font-size:14px;padding-left:22px;position:relative;margin:7px 0;color:#7c4a13;}
+  .alert li::before{content:"";position:absolute;left:4px;top:10px;width:7px;height:7px;border-radius:2px;background:var(--cta);transform:rotate(45deg);}
+
+  /* DAY CARD */
+  .day{background:var(--card);margin:16px 16px;border-radius:20px;overflow:hidden;
+    box-shadow:0 8px 24px rgba(12,74,110,.10);}
+  .day-photo{position:relative;height:178px;
+    background:linear-gradient(150deg,var(--primary-d),var(--primary) 55%,var(--secondary));}
+  .day-photo>img{position:absolute;inset:0;}
+  .day-photo::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(8,60,90,.28),rgba(8,60,90,.05) 45%,rgba(8,60,90,.62));}
+  .day-badge{position:absolute;top:13px;left:14px;z-index:2;
+    background:rgba(255,255,255,.92);color:var(--primary-d);border-radius:13px;
+    padding:6px 13px;font-weight:800;line-height:1;box-shadow:0 3px 10px rgba(0,0,0,.15);}
+  .day-badge .en{font-size:16px;}
+  .day-badge small{display:block;font-size:10px;font-weight:600;color:var(--muted);margin-top:2px;}
+  .day-pin{position:absolute;top:14px;right:14px;z-index:2;
+    background:rgba(12,74,110,.7);color:#fff;border-radius:999px;padding:5px 13px;font-size:12px;font-weight:700;backdrop-filter:blur(3px);}
+  .day-cap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:0 16px 13px;color:#fff;}
+  .day-cap .ttl{font-size:17px;font-weight:800;text-shadow:0 2px 8px rgba(0,0,0,.4);}
+  .tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;margin-left:7px;vertical-align:middle;}
+  .tag.relax{background:#cffafe;color:#0e7490;}
+  .tag.adv{background:var(--cta);color:#fff;}
+  .tag.car{background:#dcfce7;color:#15803d;}
+  .tag.boat{background:#dbeafe;color:#1d4ed8;}
+  .day-body{padding:15px 19px 19px;}
+  .day-body ul{list-style:none;}
+  .day-body li{position:relative;padding-left:23px;margin:9px 0;font-size:14.5px;}
+  .day-body li::before{content:"";position:absolute;left:3px;top:9px;width:9px;height:9px;border-radius:50%;
+    background:var(--secondary);border:2px solid #bae6fd;}
+  .note{background:#fff7ed;border-left:4px solid var(--cta);padding:10px 13px;border-radius:9px;margin-top:11px;font-size:13.5px;color:#8a5512;}
+  .note b{color:#dc2626;}
+
+  /* QUOTE TABLE */
+  .quote{background:var(--card);margin:14px 16px;border-radius:20px;padding:6px 8px 12px;box-shadow:0 8px 24px rgba(12,74,110,.10);overflow:hidden;}
+  .quote table{width:100%;border-collapse:collapse;}
+  .quote td{padding:12px 14px;font-size:14px;border-bottom:1px solid #e6f4fb;vertical-align:top;}
+  .quote tr:last-child td{border-bottom:none;}
+  .quote td:first-child{font-weight:700;white-space:nowrap;color:var(--primary-d);}
+  .quote td:last-child{color:var(--muted);}
+  .quote .head td{background:#e0f2fe;color:var(--primary-d);font-weight:800;font-size:12.5px;}
+
+  /* LIST CARD */
+  .listcard{background:var(--card);margin:14px 16px;border-radius:20px;padding:18px 21px;box-shadow:0 8px 24px rgba(12,74,110,.10);}
+  .listcard h3{font-size:16px;font-weight:800;margin-bottom:11px;display:flex;align-items:center;gap:8px;}
+  .listcard li{list-style:none;position:relative;padding-left:25px;margin:8px 0;font-size:14px;}
+  .listcard li svg{position:absolute;left:0;top:3px;color:var(--primary);}
+  .listcard li b{color:var(--ink);}
+
+  /* CONTACT */
+  .contact{background:linear-gradient(135deg,#0C7CB0,#38BDF8);color:#fff;margin:18px 16px;border-radius:20px;padding:22px 22px;box-shadow:0 10px 26px rgba(12,74,110,.25);}
+  .contact h3{font-size:17px;font-weight:800;margin-bottom:6px;}
+  .contact p{font-size:14px;opacity:.95;}
+
+  .foot{text-align:center;color:var(--muted);font-size:13px;padding:30px 22px 6px;}
+  .foot .big{font-size:18px;font-weight:800;color:var(--primary-d);margin-bottom:5px;}
+
+  @media(prefers-reduced-motion:no-preference){
+    .day,.hotel,.flight,.alert,.quote,.listcard,.contact{animation:rise .6s ease both;}
+    @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+  }
+  svg{flex-shrink:0;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO -->
+  <header class="hero">
+    <img src="https://images.unsplash.com/photo-1502920917128-1aa500764cbd?auto=format&fit=crop&w=1000&q=70" alt="Van transfer on a tropical island road" onerror="this.style.display='none'" loading="eager">
+    <div class="hero-text">
+      <div class="hero-kicker en">CEBU × BOHOL · CHARTER QUOTE</div>
+      <h1>Cebu × <span class="accent">Bohol</span><br>Charter Request</h1>
+      <div class="hero-sub">A family group of 7 adults + 3 kids — looking for a private driver / van for the whole trip 🚐</div>
+      <div class="hero-date en">Jan 23 – 28, 2027</div>
+    </div>
+  </header>
+
+  <!-- INFO -->
+  <section class="info">
+    <div class="chip">
+      <svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      <div class="label">Duration</div><div class="val">6D / 5N</div>
+    </div>
+    <div class="chip">
+      <svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <div class="label">Group</div><div class="val">7A + 3C</div>
+    </div>
+    <div class="chip">
+      <svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+      <div class="label">Need</div><div class="val">Car seat</div>
+    </div>
+    <div class="chip">
+      <svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/><path d="M9 9v.01M9 12v.01M9 15v.01"/></svg>
+      <div class="label">Area</div><div class="val">Cebu+Bohol</div>
+    </div>
+  </section>
+
+  <!-- FLIGHT -->
+  <section class="flight">
+    <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0EA5E9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>Flight times (for pickup / drop-off)</h3>
+    <div class="leg"><span class="pill go">Arrival</span><span class="route"><b>Sat, Jan 23</b> · Cebu Airport (MCIA), lands 09:50</span></div>
+    <div class="leg"><span class="pill back">Departure</span><span class="route"><b>Thu, Jan 28</b> · Cebu Airport, departs 10:50 (leave hotel ~07:30)</span></div>
+  </section>
+
+  <!-- NEEDS SUMMARY -->
+  <section class="alert">
+    <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>A few things to know before quoting</h3>
+    <ul>
+      <li>We travel with <b>3 children (one is a 2-year-old)</b>, so we need <b>1 child / infant car seat</b> — please include this in your quote.</li>
+      <li>Group of <b>10 people + luggage</b> — please advise the best vehicle (e.g. a 15–18 seater van, or two vehicles).</li>
+      <li>The Cebu ↔ Bohol leg is by fast ferry. We'd also like <b>port transfers on both sides</b> quoted.</li>
+    </ul>
+  </section>
+
+  <!-- DAILY -->
+  <h2 class="sec"><span class="bar"></span>Daily transport needs</h2>
+  <p class="sec-note">Below is our planned itinerary — we mainly need pricing for the transfers & day charters</p>
+
+  <!-- DAY 1 -->
+  <article class="day">
+    <div class="day-photo">
+      <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=1000&q=70" alt="Panglao Bohol white sand beach" onerror="this.style.display='none'" loading="lazy">
+      <div class="day-badge"><span class="en">Day 1</span><small>Arrive</small></div>
+      <div class="day-pin">Sat, Jan 23</div>
+      <div class="day-cap"><div class="ttl">Airport pickup → ferry port<span class="tag car">Pickup</span></div></div>
+    </div>
+    <div class="day-body"><ul>
+      <li><b>Pickup at Cebu Airport</b> (lands 09:50) → transfer to the fast-ferry pier for Bohol</li>
+      <li>Bohol pier → hotel in Panglao</li>
+    </ul>
+    <div class="note">🔸 Need: airport → pier transfer (Cebu side) + pier → hotel transfer (Bohol side).</div>
+    </div>
+  </article>
+
+  <!-- DAY 2 -->
+  <article class="day">
+    <div class="day-photo">
+      <img src="https://images.unsplash.com/photo-1560275619-4662e36fa65c?auto=format&fit=crop&w=1000&q=70" alt="Swimming with whale sharks" onerror="this.style.display='none'" loading="lazy">
+      <div class="day-badge"><span class="en">Day 2</span><small>Bohol</small></div>
+      <div class="day-pin">Sun, Jan 24</div>
+      <div class="day-cap"><div class="ttl">Bohol full-day charter<span class="tag car">Charter</span></div></div>
+    </div>
+    <div class="day-body"><ul>
+      <li>Early start from Panglao → whale-shark watching in Lila (about 1.5 hrs drive)</li>
+      <li>Then to a Loboc River floating restaurant for lunch, back to hotel in the afternoon</li>
+    </ul>
+    <div class="note">🔸 Need: <b>full-day charter</b> in Bohol (Panglao ↔ Lila ↔ Loboc, round trip).</div>
+    </div>
+  </article>
+
+  <!-- DAY 3 -->
+  <article class="day">
+    <div class="day-photo">
+      <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1000&q=70" alt="Coral reef snorkeling with fish" onerror="this.style.display='none'" loading="lazy">
+      <div class="day-badge"><span class="en">Day 3</span><small>Island</small></div>
+      <div class="day-pin">Mon, Jan 25</div>
+      <div class="day-cap"><div class="ttl">Island hopping (mostly by boat)<span class="tag boat">Boat day</span></div></div>
+    </div>
+    <div class="day-body"><ul>
+      <li>Balicasag wall + Virgin Island snorkeling — full day on the water</li>
+      <li>Only need <b>hotel ↔ departure pier</b> short transfers</li>
+    </ul>
+    <div class="note">🔸 Need: short hotel↔pier transfer (if you also work with a boat operator, feel free to quote that too).</div>
+    </div>
+  </article>
+
+  <!-- DAY 4 -->
+  <article class="day">
+    <div class="day-photo">
+      <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1000&q=70" alt="Cebu resort pool villa" onerror="this.style.display='none'" loading="lazy">
+      <div class="day-badge"><span class="en">Day 4</span><small>Move</small></div>
+      <div class="day-pin">Tue, Jan 26</div>
+      <div class="day-cap"><div class="ttl">Back to Cebu → hotel → dinner<span class="tag car">Transfer</span></div></div>
+    </div>
+    <div class="day-body"><ul>
+      <li>Bohol hotel → pier → fast ferry back to Cebu</li>
+      <li>Cebu pier → hotel on Mactan Island</li>
+      <li>Evening round-trip transfer to a Lechon (roast pig) restaurant for dinner</li>
+    </ul>
+    <div class="note">🔸 Need: Bohol hotel→pier, Cebu pier→Mactan hotel, dinner round-trip transfer.</div>
+    </div>
+  </article>
+
+  <!-- DAY 5 -->
+  <article class="day">
+    <div class="day-photo">
+      <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1000&q=70" alt="Resort pool with palm trees" onerror="this.style.display='none'" loading="lazy">
+      <div class="day-badge"><span class="en">Day 5</span><small>Flexible</small></div>
+      <div class="day-pin">Wed, Jan 27</div>
+      <div class="day-cap"><div class="ttl">Resort day in Cebu<span class="tag relax">Flexible</span></div></div>
+    </div>
+    <div class="day-body"><ul>
+      <li>Mostly relaxing at the resort; may want a quick trip to the city for shopping / dinner</li>
+      <li>Possibly need a <b>half-day charter or one-way transfer</b> (optional)</li>
+    </ul>
+    <div class="note">🔸 Need: flexible — please also quote a "half-day charter" and a "one-way city transfer" for reference.</div>
+    </div>
+  </article>
+
+  <!-- DAY 6 -->
+  <article class="day">
+    <div class="day-photo">
+      <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1000&q=70" alt="Airplane flying home above clouds" onerror="this.style.display='none'" loading="lazy">
+      <div class="day-badge"><span class="en">Day 6</span><small>Depart</small></div>
+      <div class="day-pin">Thu, Jan 28</div>
+      <div class="day-cap"><div class="ttl">Hotel → airport drop-off<span class="tag car">Drop-off</span></div></div>
+    </div>
+    <div class="day-body"><ul>
+      <li>Leave the Mactan hotel around 07:30 → Cebu Airport (about 10 min drive)</li>
+      <li>Flight departs 10:50 — please allow enough time to reach the airport</li>
+    </ul>
+    <div class="note">🔸 Need: Mactan hotel → Cebu Airport drop-off.</div>
+    </div>
+  </article>
+
+  <!-- QUOTE LIST -->
+  <h2 class="sec"><span class="bar"></span>Items we'd like quoted</h2>
+  <p class="sec-note">Please quote each item separately so we can compare easily</p>
+  <section class="quote">
+    <table>
+      <tr class="head"><td>Item</td><td>Details</td></tr>
+      <tr><td>① Airport pickup</td><td>Jan 23 · Cebu Airport → ferry pier</td></tr>
+      <tr><td>② Bohol transfer</td><td>Pier ↔ Panglao hotel</td></tr>
+      <tr><td>③ Bohol day charter</td><td>Jan 24 · Panglao ↔ Lila ↔ Loboc</td></tr>
+      <tr><td>④ Hotel ↔ pier</td><td>Jan 25 · short island-hopping transfer</td></tr>
+      <tr><td>⑤ Inter-island</td><td>Jan 26 · Bohol hotel→pier, Cebu pier→Mactan</td></tr>
+      <tr><td>⑥ Dinner transfer</td><td>Jan 26 · round trip to Lechon restaurant</td></tr>
+      <tr><td>⑦ Half-day / one-way</td><td>Jan 27 · flexible backup (please give unit price)</td></tr>
+      <tr><td>⑧ Airport drop-off</td><td>Jan 28 · Mactan hotel → Cebu Airport</td></tr>
+      <tr><td>⑨ Whole-trip package</td><td>If you have an all-in price for the full trip, please include it</td></tr>
+    </table>
+  </section>
+
+  <!-- PLEASE INCLUDE -->
+  <h2 class="sec"><span class="bar"></span>Please also let us know</h2>
+  <div class="listcard">
+    <h3>📋 With your quote, please include</h3>
+    <ul>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><b>Vehicle type & seats</b> (10 pax + luggage — how many seats / vehicles)</li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Whether you can provide a <b>child / infant car seat</b> (we need 1)</li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Whether the driver speaks <b>English</b>, and if a <b>tour guide</b> is included</li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Whether the price <b>includes fuel, tolls, parking, driver's meals</b></li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><b>Overtime / extra-stop charges</b>, payment method, and cancellation policy</li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Currency (PHP / USD) and whether you can issue a <b>receipt / booking confirmation</b></li>
+    </ul>
+  </div>
+
+  <!-- CONTACT -->
+  <section class="contact">
+    <h3>📩 Looking forward to your quote</h3>
+    <p>If anything above is unclear, feel free to message us directly. Please send both the per-item prices and an all-in package price. Thank you!</p>
+  </section>
+
+  <footer class="foot">
+    <div class="big">Cebu × Bohol — Charter Request 🚐</div>
+    Itinerary and times may be slightly adjusted; final details to be confirmed.<br>
+    Thank you for your time 🙏
+  </footer>
+
+</div>
+</body>
+</html>
