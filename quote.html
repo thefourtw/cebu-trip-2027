@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>宿霧 × 薄荷島 包車詢價 2027 · 7 大 3 小</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  :root{
+    --primary:#0EA5E9; --primary-d:#0C7CB0; --secondary:#38BDF8;
+    --cta:#F97316; --bg:#F0F9FF; --ink:#0C4A6E; --muted:#5b7b8c;
+    --card:#ffffff; --sun:#FBBF24;
+  }
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:"Noto Sans TC",-apple-system,"PingFang TC","Microsoft JhengHei",sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.75; padding-bottom:48px;
+  }
+  .en{font-family:"Poppins","Noto Sans TC",sans-serif;}
+  .wrap{max-width:600px;margin:0 auto;}
+  img{display:block;width:100%;height:100%;object-fit:cover;}
+
+  /* HERO */
+  .hero{position:relative;height:430px;overflow:hidden;
+    background:linear-gradient(160deg,#0C7CB0,#0EA5E9 45%,#38BDF8);}
+  .hero>img{position:absolute;inset:0;}
+  .hero::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(8,60,90,.25) 0%,rgba(8,60,90,.15) 40%,rgba(8,60,90,.78) 100%);}
+  .hero-text{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:0 26px 34px;color:#fff;}
+  .hero-kicker{font-size:13px;letter-spacing:3px;opacity:.92;margin-bottom:8px;}
+  .hero h1{font-size:33px;font-weight:900;line-height:1.2;text-shadow:0 2px 14px rgba(0,0,0,.3);}
+  .hero h1 .accent{color:var(--sun);}
+  .hero-sub{font-size:15px;margin-top:8px;opacity:.95;}
+  .hero-date{display:inline-flex;align-items:center;gap:7px;margin-top:16px;
+    background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.4);
+    backdrop-filter:blur(4px);border-radius:999px;padding:9px 18px;font-weight:700;font-size:15px;}
+
+  /* INFO CHIPS */
+  .info{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;padding:20px 16px 6px;}
+  .chip{background:var(--card);border-radius:15px;padding:13px 8px;text-align:center;
+    box-shadow:0 5px 16px rgba(14,165,233,.10);}
+  .chip .ic{color:var(--primary);margin:0 auto 5px;display:block;}
+  .chip .label{font-size:11px;color:var(--muted);}
+  .chip .val{font-size:14px;font-weight:700;margin-top:1px;}
+
+  /* SECTION TITLE */
+  .sec{font-size:20px;font-weight:900;padding:30px 22px 4px;display:flex;align-items:center;gap:9px;}
+  .sec .bar{width:5px;height:22px;background:var(--cta);border-radius:3px;display:inline-block;}
+  .sec-note{font-size:13px;color:var(--muted);padding:0 22px 6px;}
+
+  /* FLIGHT CARD */
+  .flight{background:var(--card);margin:14px 16px;border-radius:18px;padding:18px 20px;
+    box-shadow:0 6px 20px rgba(12,74,110,.08);}
+  .flight h3{font-size:15px;font-weight:900;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+  .leg{display:flex;align-items:center;gap:10px;margin:9px 0;font-size:15px;}
+  .leg .pill{font-size:12px;font-weight:700;border-radius:8px;padding:3px 10px;flex-shrink:0;}
+  .pill.go{background:#e0f2fe;color:var(--primary-d);}
+  .pill.back{background:#ffedd5;color:#c2620e;}
+  .leg .route{font-weight:500;}
+  .leg .route b{font-weight:800;}
+
+  /* ALERT */
+  .alert{background:#fff7ed;border:1px solid #fed7aa;margin:14px 16px;border-radius:18px;padding:16px 20px;
+    box-shadow:0 6px 20px rgba(249,115,22,.08);}
+  .alert h3{font-size:15px;font-weight:900;color:#c2620e;margin-bottom:9px;display:flex;align-items:center;gap:8px;}
+  .alert ul{list-style:none;}
+  .alert li{font-size:14px;padding-left:22px;position:relative;margin:7px 0;color:#7c4a13;}
+  .alert li::before{content:"";position:absolute;left:4px;top:10px;width:7px;height:7px;border-radius:2px;background:var(--cta);transform:rotate(45deg);}
+
+  /* DAY CARD */
+  .day{background:var(--card);margin:16px 16px;border-radius:20px;overflow:hidden;
+    box-shadow:0 8px 24px rgba(12,74,110,.10);}
+  .day-photo{position:relative;height:178px;
+    background:linear-gradient(150deg,var(--primary-d),var(--primary) 55%,var(--secondary));}
+  .day-photo>img{position:absolute;inset:0;}
+  .day-photo::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(8,60,90,.28),rgba(8,60,90,.05) 45%,rgba(8,60,90,.62));}
+  .day-badge{position:absolute;top:13px;left:14px;z-index:2;
+    background:rgba(255,255,255,.92);color:var(--primary-d);border-radius:13px;
+    padding:6px 13px;font-weight:900;line-height:1;box-shadow:0 3px 10px rgba(0,0,0,.15);}
+  .day-badge .en{font-size:16px;}
+  .day-badge small{display:block;font-size:10px;font-weight:600;color:var(--muted);margin-top:2px;}
+  .day-pin{position:absolute;top:14px;right:14px;z-index:2;
+    background:rgba(12,74,110,.7);color:#fff;border-radius:999px;padding:5px 13px;font-size:12px;font-weight:700;backdrop-filter:blur(3px);}
+  .day-cap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:0 16px 13px;color:#fff;}
+  .day-cap .ttl{font-size:18.5px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.4);}
+  .tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;margin-left:7px;vertical-align:middle;}
+  .tag.relax{background:#cffafe;color:#0e7490;}
+  .tag.adv{background:var(--cta);color:#fff;}
+  .tag.car{background:#dcfce7;color:#15803d;}
+  .tag.boat{background:#dbeafe;color:#1d4ed8;}
+  .day-body{padding:15px 19px 19px;}
+  .day-body ul{list-style:none;}
+  .day-body li{position:relative;padding-left:23px;margin:9px 0;font-size:15px;}
+  .day-body li::before{content:"";position:absolute;left:3px;top:9px;width:9px;height:9px;border-radius:50%;
+    background:var(--secondary);border:2px solid #bae6fd;}
+  .note{background:#fff7ed;border-left:4px solid var(--cta);padding:10px 13px;border-radius:9px;margin-top:11px;font-size:13.5px;color:#8a5512;}
+  .note b{color:#dc2626;}
+
+  /* QUOTE TABLE */
+  .quote{background:var(--card);margin:14px 16px;border-radius:20px;padding:6px 8px 12px;box-shadow:0 8px 24px rgba(12,74,110,.10);overflow:hidden;}
+  .quote table{width:100%;border-collapse:collapse;}
+  .quote td{padding:12px 14px;font-size:14.5px;border-bottom:1px solid #e6f4fb;vertical-align:top;}
+  .quote tr:last-child td{border-bottom:none;}
+  .quote td:first-child{font-weight:700;white-space:nowrap;color:var(--primary-d);}
+  .quote td:last-child{color:var(--muted);}
+  .quote .head td{background:#e0f2fe;color:var(--primary-d);font-weight:900;font-size:13px;}
+
+  /* LIST CARD (needs/tips) */
+  .listcard{background:var(--card);margin:14px 16px;border-radius:20px;padding:18px 21px;box-shadow:0 8px 24px rgba(12,74,110,.10);}
+  .listcard h3{font-size:16px;font-weight:900;margin-bottom:11px;display:flex;align-items:center;gap:8px;}
+  .listcard li{list-style:none;position:relative;padding-left:25px;margin:8px 0;font-size:14.5px;}
+  .listcard li svg{position:absolute;left:0;top:3px;color:var(--primary);}
+  .listcard li b{color:var(--ink);}
+
+  /* CONTACT */
+  .contact{background:linear-gradient(135deg,#0C7CB0,#38BDF8);color:#fff;margin:18px 16px;border-radius:20px;padding:22px 22px;box-shadow:0 10px 26px rgba(12,74,110,.25);}
+  .contact h3{font-size:17px;font-weight:900;margin-bottom:6px;}
+  .contact p{font-size:14px;opacity:.95;}
+
+  .foot{text-align:center;color:var(--muted);font-size:13px;padding:30px 22px 6px;}
+  .foot .big{font-size:18px;font-weight:900;color:var(--primary-d);margin-bottom:5px;}
+
+  @media(prefers-reduced-motion:no-preference){
+    .day,.hotel,.flight,.alert,.quote,.listcard,.contact{animation:rise .6s ease both;}
+    @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+  }
+  svg{flex-shrink:0;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO -->
+  <header class="hero">
+    <img src="https://images.unsplash.com/photo-1502920917128-1aa500764cbd?auto=format&fit=crop&w=1000&q=70" alt="廂型車海島公路接送" onerror="this.style.display='none'" loading="eager">
+    <div class="hero-text">
+      <div class="hero-kicker en">CEBU × BOHOL · CHARTER QUOTE</div>
+      <h1>宿霧 × <span class="accent">薄荷島</span><br>包車詢價</h1>
+      <div class="hero-sub">7 大 3 小家庭團，想請您報全程包車 + 接送 🚐</div>
+      <div class="hero-date en">2027 / 01 / 23 – 01 / 28</div>
+    </div>
+  </header>
+
+  <!-- INFO -->
+  <section class="info">
+    <div class="chip">
+      <svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      <div class="label">天數</div><div class="val">6 天 5 晚</div>
+    </div>
+    <div class="chip">
+      <svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <div class="label">人數</div><div class="val">7 大 3 小</div>
+    </div>
+    <div class="chip">
+      <svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h2a2 2 0 0 0 2-2V2M7 2v20"/><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+      <div class="label">需求</div><div class="val">含兒童座椅</div>
+    </div>
+    <div class="chip">
+      <svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/><path d="M9 9v.01M9 12v.01M9 15v.01"/></svg>
+      <div class="label">範圍</div><div class="val">薄荷+宿霧</div>
+    </div>
+  </section>
+
+  <!-- FLIGHT (接送時間) -->
+  <section class="flight">
+    <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0EA5E9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>航班時間（接機 / 送機用）</h3>
+    <div class="leg"><span class="pill go">接機</span><span class="route"><b>1/23（六）</b> 宿霧機場 抵達 09:50（星宇直飛）</span></div>
+    <div class="leg"><span class="pill back">送機</span><span class="route"><b>1/28（四）</b> 宿霧機場 起飛 10:50（建議 07:30 出發）</span></div>
+  </section>
+
+  <!-- NEEDS SUMMARY -->
+  <section class="alert">
+    <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>報價前想先讓您知道</h3>
+    <ul>
+      <li>同行有 <b>3 位小孩（含 1 位 2 歲幼兒）</b>，需要 <b>兒童 / 安全座椅</b>，請報含座椅的方案</li>
+      <li>全團 <b>10 人 + 行李</b>，請建議合適車型（如 15–18 人座廂型車或兩車）</li>
+      <li>跨島段（宿霧 ↔ 薄荷島）走快船，<b>兩邊碼頭接送</b>也想一起請您報價</li>
+    </ul>
+  </section>
+
+  <!-- DAILY 用車需求 -->
+  <h2 class="sec"><span class="bar"></span>每日用車需求</h2>
+  <p class="sec-note">以下為預計行程，主要想請您報「接送 + 包車待命」的部分</p>
+
+  <!-- DAY 1 -->
+  <article class="day">
+    <div class="day-photo">
+      <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=1000&q=70" alt="薄荷島 Panglao 椰林白沙灘" onerror="this.style.display='none'" loading="lazy">
+      <div class="day-badge"><span class="en">Day 1</span><small>抵達</small></div>
+      <div class="day-pin">1/23（六）</div>
+      <div class="day-cap"><div class="ttl">機場接機 → 碼頭<span class="tag car">接機</span></div></div>
+    </div>
+    <div class="day-body"><ul>
+      <li><b>宿霧機場接機</b>（09:50 抵達）→ 送到快船碼頭搭船去薄荷島</li>
+      <li>薄荷島碼頭 → Panglao 飯店接送</li>
+    </ul>
+    <div class="note">🔸 需要：宿霧端機場→碼頭接送、薄荷島端碼頭→飯店接送。</div>
+    </div>
+  </article>
+
+  <!-- DAY 2 -->
+  <article class="day">
+    <div class="day-photo">
+      <img src="https://images.unsplash.com/photo-1560275619-4662e36fa65c?auto=format&fit=crop&w=1000&q=70" alt="與鯨鯊在海中共游" onerror="this.style.display='none'" loading="lazy">
+      <div class="day-badge"><span class="en">Day 2</span><small>薄荷島</small></div>
+      <div class="day-pin">1/24（日）</div>
+      <div class="day-cap"><div class="ttl">薄荷島一日包車<span class="tag car">包車</span></div></div>
+    </div>
+    <div class="day-body"><ul>
+      <li>清晨從 Panglao 出發 → Lila 賞鯨鯊（車程約 1.5 小時）</li>
+      <li>接著到 Loboc 河上餐廳午餐，下午返回飯店</li>
+    </ul>
+    <div class="note">🔸 需要：薄荷島<b>一日包車待命</b>（Panglao ↔ Lila ↔ Loboc 來回）。</div>
+    </div>
+  </article>
+
+  <!-- DAY 3 -->
+  <article class="day">
+    <div class="day-photo">
+      <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1000&q=70" alt="珊瑚礁浮潛熱帶魚群" onerror="this.style.display='none'" loading="lazy">
+      <div class="day-badge"><span class="en">Day 3</span><small>跳島</small></div>
+      <div class="day-pin">1/25（一）</div>
+      <div class="day-cap"><div class="ttl">出海跳島（多為船程）<span class="tag boat">船為主</span></div></div>
+    </div>
+    <div class="day-body"><ul>
+      <li>巴里卡薩大斷層 + 處女島浮潛，整天以出海為主</li>
+      <li>僅需 <b>飯店 ↔ 出海碼頭</b> 短程接送</li>
+    </ul>
+    <div class="note">🔸 需要：飯店↔碼頭短程接送（若您也有配合的跳島船家可一併報）。</div>
+    </div>
+  </article>
+
+  <!-- DAY 4 -->
+  <article class="day">
+    <div class="day-photo">
+      <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1000&q=70" alt="宿霧度假村泳池別墅" onerror="this.style.display='none'" loading="lazy">
+      <div class="day-badge"><span class="en">Day 4</span><small>移動</small></div>
+      <div class="day-pin">1/26（二）</div>
+      <div class="day-cap"><div class="ttl">回宿霧 → 飯店 → 聚餐<span class="tag car">接送</span></div></div>
+    </div>
+    <div class="day-body"><ul>
+      <li>薄荷島飯店 → 碼頭 → 快船回宿霧</li>
+      <li>宿霧碼頭 → Mactan 島 Crimson 飯店</li>
+      <li>晚上接送往返烤乳豬 Lechon 餐廳聚餐</li>
+    </ul>
+    <div class="note">🔸 需要：薄荷島飯店→碼頭、宿霧碼頭→Mactan 飯店、晚餐來回接送。</div>
+    </div>
+  </article>
+
+  <!-- DAY 5 -->
+  <article class="day">
+    <div class="day-photo">
+      <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1000&q=70" alt="度假村泳池棕櫚樹放鬆" onerror="this.style.display='none'" loading="lazy">
+      <div class="day-badge"><span class="en">Day 5</span><small>彈性</small></div>
+      <div class="day-pin">1/27（三）</div>
+      <div class="day-cap"><div class="ttl">宿霧度假村放鬆<span class="tag relax">彈性</span></div></div>
+    </div>
+    <div class="day-body"><ul>
+      <li>多在度假村內放鬆，可能臨時想去市區購物 / 用餐</li>
+      <li>視情況需要 <b>半日包車或單趟接送</b>（可另計）</li>
+    </ul>
+    <div class="note">🔸 需要：彈性，請順便報「半日包車」與「市區單趟」的價格供我們參考。</div>
+    </div>
+  </article>
+
+  <!-- DAY 6 -->
+  <article class="day">
+    <div class="day-photo">
+      <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1000&q=70" alt="飛機在雲層上飛行回家" onerror="this.style.display='none'" loading="lazy">
+      <div class="day-badge"><span class="en">Day 6</span><small>送機</small></div>
+      <div class="day-pin">1/28（四）</div>
+      <div class="day-cap"><div class="ttl">飯店 → 機場送機<span class="tag car">送機</span></div></div>
+    </div>
+    <div class="day-body"><ul>
+      <li>約 07:30 從 Mactan 飯店出發 → 宿霧機場（車程約 10 分鐘）</li>
+      <li>10:50 班機，請抓足提前到機場時間</li>
+    </ul>
+    <div class="note">🔸 需要：Mactan 飯店→宿霧機場送機。</div>
+    </div>
+  </article>
+
+  <!-- 需要報價的項目 -->
+  <h2 class="sec"><span class="bar"></span>需要報價的項目</h2>
+  <p class="sec-note">麻煩您針對下列項目分項報價，方便我們比較</p>
+  <section class="quote">
+    <table>
+      <tr class="head"><td>項目</td><td>說明</td></tr>
+      <tr><td>① 機場接機</td><td>1/23 宿霧機場 → 快船碼頭</td></tr>
+      <tr><td>② 薄荷島接送</td><td>碼頭 ↔ Panglao 飯店</td></tr>
+      <tr><td>③ 薄荷島一日包車</td><td>1/24 Panglao ↔ Lila ↔ Loboc</td></tr>
+      <tr><td>④ 飯店↔碼頭</td><td>1/25 出海日短程接送</td></tr>
+      <tr><td>⑤ 跨島接送</td><td>1/26 薄荷飯店→碼頭、宿霧碼頭→Mactan</td></tr>
+      <tr><td>⑥ 晚餐接送</td><td>1/26 Lechon 餐廳來回</td></tr>
+      <tr><td>⑦ 半日包車 / 單趟</td><td>1/27 彈性備用（請另報單價）</td></tr>
+      <tr><td>⑧ 機場送機</td><td>1/28 Mactan 飯店 → 宿霧機場</td></tr>
+      <tr><td>⑨ 全程包車</td><td>若有「整趟包車」整包價，也請一併提供</td></tr>
+    </table>
+  </section>
+
+  <!-- 想請您一併說明 -->
+  <h2 class="sec"><span class="bar"></span>想請您一併說明</h2>
+  <div class="listcard">
+    <h3>📋 報價時麻煩附上</h3>
+    <ul>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><b>車型與座位數</b>（10 人 + 行李，建議幾人座 / 幾台車）</li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>是否能提供 <b>兒童 / 安全座椅</b>（需 1 張幼兒座椅）</li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>司機是否 <b>會講中文 / 英文</b>、是否含 <b>導遊</b></li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>報價是否 <b>含油資、過路費、停車、司機餐</b></li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>超時 / 加點如何 <b>計費</b>，付款方式與 <b>取消政策</b></li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>幣別（披索 / 台幣）與是否能 <b>開收據 / 確認單</b></li>
+    </ul>
+  </div>
+
+  <!-- CONTACT -->
+  <section class="contact">
+    <h3>📩 期待您的報價</h3>
+    <p>如以上有任何不清楚的地方，歡迎直接訊息我們確認。再麻煩您回覆分項與整包兩種價格，感謝！</p>
+  </section>
+
+  <footer class="foot">
+    <div class="big">宿霧 × 薄荷島 包車詢價 🚐</div>
+    行程與時間可能微調，將以最終確認為準<br>
+    謝謝您撥空報價 🙏
+  </footer>
+
+</div>
+</body>
+</html>
