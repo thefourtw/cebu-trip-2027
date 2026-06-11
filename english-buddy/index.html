@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>English Buddy 🗣️ 英語口說陪練</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div>
+      <h1>English Buddy 🗣️</h1>
+      <div class="sub">情境式英語口說陪練 · 家長陪同版 v0.1</div>
+    </div>
+    <button id="settingsBtn" class="btn-ghost">⚙️ 設定</button>
+  </header>
+
+  <main>
+    <!-- 設定面板 -->
+    <section id="settings" class="hidden">
+      <label for="apiKeyInput">Anthropic API key</label>
+      <input id="apiKeyInput" type="password" placeholder="sk-ant-..." autocomplete="off" />
+      <div class="hint">只存在這台電腦的瀏覽器，不會上傳。申請：console.anthropic.com</div>
+
+      <label for="modelSelect">模型</label>
+      <select id="modelSelect"></select>
+      <div class="hint">語音對話講求即時，建議先用 Haiku；想要更聰明的引導再換 Opus。</div>
+
+      <div style="margin-top:16px;display:flex;gap:10px;">
+        <button id="saveSettings" class="mic-btn">儲存</button>
+      </div>
+    </section>
+
+    <!-- 場景選單 -->
+    <section id="sceneMenu">
+      <h2 style="margin:4px 0 14px;">選一個場景開始 👇</h2>
+      <div id="sceneGrid" class="scene-grid"></div>
+      <p class="parent-tip" style="margin-top:18px;">
+        💡 家長小提示：孩子卡住時，指右側「目標語塊」告訴他可以說哪一句。每天 10–15 分鐘最有效。
+      </p>
+    </section>
+
+    <!-- 對話畫面 -->
+    <section id="playView" class="hidden">
+      <button id="backBtn" class="back">← 換場景</button>
+      <div class="play" style="margin-top:10px;">
+        <div class="chat-wrap">
+          <div class="chat-head">
+            <strong id="chatTitle"></strong>
+            <span id="chatTask" class="task"></span>
+          </div>
+          <div id="messages" class="messages"></div>
+          <div class="composer">
+            <button id="micBtn" class="mic-btn">🎤 我要說</button>
+            <input id="textInput" type="text" placeholder="說不出來？也可以打字…" />
+            <button id="sendBtn" class="send">送出</button>
+          </div>
+        </div>
+
+        <aside class="side">
+          <div class="panel">
+            <h3>🎯 目標語塊</h3>
+            <div id="chunkList"></div>
+          </div>
+          <div class="parent-tip">
+            👂 = AI 說給他聽的次數　🗣️★ = 孩子自己說出來的次數。越多星星，代表越內化！
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <script src="scenes.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
