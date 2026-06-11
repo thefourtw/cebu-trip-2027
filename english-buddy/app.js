@@ -138,6 +138,11 @@ function speak(text) {
   const voices = window.speechSynthesis.getVoices();
   const en = voices.find(v => /en[-_]US/i.test(v.lang)) || voices.find(v => /^en/i.test(v.lang));
   if (en) u.voice = en;
+  // 角色講話時跳動
+  const face = document.getElementById("avatarFace");
+  u.onstart = () => { face && face.classList.add("talking"); };
+  u.onend = () => { face && face.classList.remove("talking"); };
+  u.onerror = () => { face && face.classList.remove("talking"); };
   window.speechSynthesis.cancel();
   window.speechSynthesis.speak(u);
 }
@@ -156,7 +161,21 @@ function setupRecognition() {
     handleKidInput(transcript);
   };
   r.onend = () => { recognizing = false; updateMicUI(); };
-  r.onerror = () => { recognizing = false; updateMicUI(); };
+  r.onerror = (e) => {
+    recognizing = false; updateMicUI();
+    const code = e && e.error ? e.error : "";
+    if (code === "not-allowed" || code === "service-not-allowed") {
+      addBubble("sys", "麥克風權限被擋住了：點網址列左邊的圖示，把「麥克風」改成允許，然後重新整理頁面。");
+    } else if (code === "network") {
+      addBubble("sys", "語音服務連不上。Mac 上的 Edge 常有這個問題，請改用 Google Chrome 開 http://localhost:8000。");
+    } else if (code === "no-speech") {
+      addBubble("sys", "沒聽到聲音～再按一次 🎤，大聲說一句英文試試！");
+    } else if (code === "audio-capture") {
+      addBubble("sys", "找不到麥克風：請到「系統設定 → 隱私權與安全性 → 麥克風」允許你的瀏覽器使用。");
+    } else if (code !== "aborted") {
+      addBubble("sys", `語音辨識出錯（${code || "未知"}）。可以先用打字框，或改用 Chrome 再試。`);
+    }
+  };
   return r;
 }
 
@@ -168,7 +187,10 @@ function toggleMic() {
   if (recognizing) { recognition.stop(); return; }
   recognizing = true;
   updateMicUI();
-  try { recognition.start(); } catch (e) { recognizing = false; updateMicUI(); }
+  try { recognition.start(); } catch (e) {
+    recognizing = false; updateMicUI();
+    addBubble("sys", "麥克風啟動失敗，請重新整理頁面再試一次。");
+  }
 }
 
 function updateMicUI() {
@@ -239,6 +261,28 @@ function renderChunks() {
   });
 }
 
+// ---- 卡通舞台 ----
+function renderStage(s) {
+  const stage = document.getElementById("stage");
+  if (!stage) return;
+  stage.style.background = s.bg || "linear-gradient(180deg,#eef5ff,#ffffff)";
+  stage.innerHTML = "";
+  (s.props || []).forEach(p => {
+    const span = document.createElement("span");
+    span.className = "prop";
+    span.textContent = p.e;
+    span.style.left = p.x;
+    span.style.top = p.y;
+    span.style.fontSize = (p.s || 28) + "px";
+    span.style.animationDelay = (p.d || 0) + "s";
+    stage.appendChild(span);
+  });
+  const wrap = document.createElement("div");
+  wrap.className = "avatar-wrap";
+  wrap.innerHTML = `<div class="avatar" id="avatarFace">${s.avatar || s.emoji}</div><div class="avatar-name">${s.aiName}</div>`;
+  stage.appendChild(wrap);
+}
+
 // ---- 開始一個場景 ----
 function startScene(s) {
   scene = s;
@@ -248,6 +292,7 @@ function startScene(s) {
   document.getElementById("chatTask").innerHTML = `任務：<b>${s.goalZh}</b>`;
   document.getElementById("chatTitle").textContent = `${s.emoji} ${s.title}`;
   document.getElementById("messages").innerHTML = "";
+  renderStage(s);
   renderChunks();
 
   // AI 開場白（直接顯示 + 念出來，不用先花一次 API）
