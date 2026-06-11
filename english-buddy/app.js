@@ -16,8 +16,23 @@ let state = {
   apiKey: "",
   model: "claude-haiku-4-5",
   voiceURI: "",
+  ttsProvider: "browser",   // "browser" | "openai"
+  openaiKey: "",
+  openaiVoice: "nova",
   progress: {} // { "sceneId|en": { exposure, used } }
 };
+
+// OpenAI 真人語音可選的聲音
+const OPENAI_VOICES = {
+  nova: "Nova（溫暖女聲，推薦給孩子）",
+  shimmer: "Shimmer（明亮女聲）",
+  coral: "Coral（活潑女聲）",
+  alloy: "Alloy（中性）",
+  echo: "Echo（沉穩男聲）",
+  onyx: "Onyx（低沉男聲）",
+  fable: "Fable（英式說書感）"
+};
+let currentAudio = null;
 let scene = null;       // 目前場景
 let messages = [];      // 對話歷史（傳給 API）
 let recognizing = false;
@@ -162,22 +177,79 @@ function pickVoice() {
   return en.slice().sort((a, b) => scoreVoice(b) - scoreVoice(a))[0];
 }
 
-function speak(text) {
+// 去掉中文括號提示，只念英文部分，發音才順
+function cleanForSpeech(text) {
+  return text.replace(/[（(][^（()）]*[)）]/g, "").trim() || text;
+}
+function setTalking(on) {
+  const face = document.getElementById("avatarFace");
+  if (face) face.classList.toggle("talking", on);
+}
+function stopAllAudio() {
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  if (currentAudio) { currentAudio.pause(); currentAudio = null; }
+}
+
+// 主入口：依設定選真人語音或瀏覽器語音
+async function speak(text) {
+  const say = cleanForSpeech(text);
+  stopAllAudio();
+  if (state.ttsProvider === "openai" && state.openaiKey) {
+    const ok = await speakOpenAI(say);
+    if (ok) return;       // 成功就結束；失敗則退回瀏覽器語音
+  }
+  speakBrowser(say);
+}
+
+// OpenAI 真人語音
+async function speakOpenAI(text) {
+  try {
+    const res = await fetch("https://api.openai.com/v1/audio/speech", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "authorization": "Bearer " + state.openaiKey
+      },
+      body: JSON.stringify({
+        model: "gpt-4o-mini-tts",
+        voice: state.openaiVoice || "nova",
+        input: text,
+        instructions: "Speak slowly, clearly, and warmly with a friendly American accent, as if talking to a young child who is learning English."
+      })
+    });
+    if (!res.ok) {
+      const t = await res.text();
+      if (res.status === 401) addBubble("sys", "OpenAI key 無效，請到設定重新貼上。");
+      else addBubble("sys", `真人語音出錯（${res.status}），先用瀏覽器語音。${t.slice(0, 80)}`);
+      return false;
+    }
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+    const audio = new Audio(url);
+    currentAudio = audio;
+    audio.onplay = () => setTalking(true);
+    audio.onended = () => { setTalking(false); URL.revokeObjectURL(url); };
+    audio.onerror = () => setTalking(false);
+    await audio.play();
+    return true;
+  } catch (e) {
+    addBubble("sys", "真人語音連線失敗（可能是瀏覽器擋住跨網域），先用瀏覽器語音。");
+    return false;
+  }
+}
+
+// 瀏覽器內建語音（備援）
+function speakBrowser(text) {
   if (!("speechSynthesis" in window)) return;
-  // 去掉中文括號提示，只念英文部分，發音才順
-  const englishOnly = text.replace(/[（(][^（()）]*[)）]/g, "").trim();
-  const u = new SpeechSynthesisUtterance(englishOnly || text);
+  const u = new SpeechSynthesisUtterance(text);
   u.lang = "en-US";
-  u.rate = 0.95; // 給孩子聽得清楚
+  u.rate = 0.95;
   u.pitch = 1.0;
   const v = pickVoice();
   if (v) u.voice = v;
-  // 角色講話時跳動
-  const face = document.getElementById("avatarFace");
-  u.onstart = () => { face && face.classList.add("talking"); };
-  u.onend = () => { face && face.classList.remove("talking"); };
-  u.onerror = () => { face && face.classList.remove("talking"); };
-  window.speechSynthesis.cancel();
+  u.onstart = () => setTalking(true);
+  u.onend = () => setTalking(false);
+  u.onerror = () => setTalking(false);
   window.speechSynthesis.speak(u);
 }
 
@@ -368,6 +440,10 @@ function renderSettings() {
     if (id === state.model) opt.selected = true;
     sel.appendChild(opt);
   });
+  document.getElementById("ttsProvider").value = state.ttsProvider;
+  document.getElementById("openaiKeyInput").value = state.openaiKey;
+  renderOpenAIVoices();
+  syncTtsBoxes();
 }
 function renderVoices() {
   const sel = document.getElementById("voiceSelect");
@@ -386,13 +462,43 @@ function renderVoices() {
   });
 }
 
-function previewVoice() {
-  const uri = document.getElementById("voiceSelect").value;
-  const v = englishVoices().find(x => x.voiceURI === uri);
-  const u = new SpeechSynthesisUtterance("Hi! I'm your English buddy. Let's have fun together!");
+function renderOpenAIVoices() {
+  const sel = document.getElementById("openaiVoiceSelect");
+  if (!sel) return;
+  sel.innerHTML = "";
+  Object.entries(OPENAI_VOICES).forEach(([id, label]) => {
+    const opt = document.createElement("option");
+    opt.value = id; opt.textContent = label;
+    if (id === state.openaiVoice) opt.selected = true;
+    sel.appendChild(opt);
+  });
+}
+
+function syncTtsBoxes() {
+  const provider = document.getElementById("ttsProvider").value;
+  document.getElementById("openaiBox").classList.toggle("hidden", provider !== "openai");
+  document.getElementById("browserBox").classList.toggle("hidden", provider === "openai");
+}
+
+// 試聽：依目前下拉選的引擎與聲音（不必先按儲存）
+async function previewVoice() {
+  const line = "Hi! I'm your English buddy. Let's have fun together!";
+  const provider = document.getElementById("ttsProvider").value;
+  stopAllAudio();
+  if (provider === "openai") {
+    const key = document.getElementById("openaiKeyInput").value.trim();
+    if (!key) { addBubble && addBubble("sys", "請先貼上 OpenAI key 再試聽。"); alert("請先貼上 OpenAI key 再試聽。"); return; }
+    const saved = { ...state };
+    state.openaiKey = key;
+    state.openaiVoice = document.getElementById("openaiVoiceSelect").value;
+    const ok = await speakOpenAI(line);
+    if (!ok) Object.assign(state, saved);
+    return;
+  }
+  const v = englishVoices().find(x => x.voiceURI === document.getElementById("voiceSelect").value);
+  const u = new SpeechSynthesisUtterance(line);
   u.lang = "en-US"; u.rate = 0.95;
   if (v) u.voice = v;
-  window.speechSynthesis.cancel();
   window.speechSynthesis.speak(u);
 }
 
@@ -401,6 +507,9 @@ function saveSettings() {
   state.apiKey = document.getElementById("apiKeyInput").value.trim();
   state.model = document.getElementById("modelSelect").value;
   state.voiceURI = document.getElementById("voiceSelect").value;
+  state.ttsProvider = document.getElementById("ttsProvider").value;
+  state.openaiKey = document.getElementById("openaiKeyInput").value.trim();
+  state.openaiVoice = document.getElementById("openaiVoiceSelect").value;
   save();
   toggleSettings();
 }
@@ -416,6 +525,7 @@ window.addEventListener("DOMContentLoaded", () => {
   document.getElementById("settingsBtn").onclick = toggleSettings;
   document.getElementById("saveSettings").onclick = saveSettings;
   document.getElementById("previewVoice").onclick = previewVoice;
+  document.getElementById("ttsProvider").onchange = syncTtsBoxes;
   document.getElementById("backBtn").onclick = backToMenu;
   document.getElementById("micBtn").onclick = toggleMic;
   document.getElementById("sendBtn").onclick = () => handleKidInput(document.getElementById("textInput").value);
