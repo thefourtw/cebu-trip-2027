@@ -15,6 +15,7 @@ const MODELS = {
 let state = {
   apiKey: "",
   model: "claude-haiku-4-5",
+  voiceURI: "",
   progress: {} // { "sceneId|en": { exposure, used } }
 };
 let scene = null;       // 目前場景
@@ -128,16 +129,49 @@ async function askClaude() {
 }
 
 // ---- 語音合成（AI 念出來）----
+
+// 該避開的難聽 / 搞笑 Mac 語音
+const BAD_VOICES = ["albert","bad news","bahh","bells","boing","bubbles","cellos","deranged","good news","hysterical","jester","junior","organ","ralph","trinoids","whisper","wobble","zarvox","superstar","eddy","flo","grandma","grandpa","reed","rocko","sandy","shelley"];
+// 偏好的自然語音（依序）
+const GOOD_VOICES = ["google us english","samantha","ava","allison","susan","zoe","evan","nathan","tom","alex","karen","aaron","nicky","joelle"];
+
+function englishVoices() {
+  const all = window.speechSynthesis ? window.speechSynthesis.getVoices() : [];
+  return all.filter(v => /^en/i.test(v.lang));
+}
+
+function scoreVoice(v) {
+  const name = v.name.toLowerCase();
+  let s = 0;
+  if (BAD_VOICES.some(b => name.includes(b))) return -100;
+  if (name.includes("google us english")) s += 10;     // Chrome 線上自然語音，最佳
+  if (name.includes("(premium)") || name.includes("(enhanced)") || name.includes("siri")) s += 8;
+  const gi = GOOD_VOICES.findIndex(g => name.includes(g));
+  if (gi >= 0) s += (6 - Math.min(gi, 5));
+  if (/en[-_]US/i.test(v.lang)) s += 3;                 // 美式優先
+  return s;
+}
+
+function pickVoice() {
+  const en = englishVoices();
+  if (!en.length) return null;
+  if (state.voiceURI) {
+    const chosen = en.find(v => v.voiceURI === state.voiceURI);
+    if (chosen) return chosen;
+  }
+  return en.slice().sort((a, b) => scoreVoice(b) - scoreVoice(a))[0];
+}
+
 function speak(text) {
   if (!("speechSynthesis" in window)) return;
   // 去掉中文括號提示，只念英文部分，發音才順
   const englishOnly = text.replace(/[（(][^（()）]*[)）]/g, "").trim();
   const u = new SpeechSynthesisUtterance(englishOnly || text);
   u.lang = "en-US";
-  u.rate = 0.9; // 給孩子聽得清楚
-  const voices = window.speechSynthesis.getVoices();
-  const en = voices.find(v => /en[-_]US/i.test(v.lang)) || voices.find(v => /^en/i.test(v.lang));
-  if (en) u.voice = en;
+  u.rate = 0.95; // 給孩子聽得清楚
+  u.pitch = 1.0;
+  const v = pickVoice();
+  if (v) u.voice = v;
   // 角色講話時跳動
   const face = document.getElementById("avatarFace");
   u.onstart = () => { face && face.classList.add("talking"); };
@@ -335,10 +369,38 @@ function renderSettings() {
     sel.appendChild(opt);
   });
 }
+function renderVoices() {
+  const sel = document.getElementById("voiceSelect");
+  if (!sel) return;
+  const en = englishVoices().slice().sort((a, b) => scoreVoice(b) - scoreVoice(a));
+  if (!en.length) { sel.innerHTML = '<option value="">（瀏覽器目前沒有英文語音）</option>'; return; }
+  const current = state.voiceURI || (pickVoice() ? pickVoice().voiceURI : "");
+  sel.innerHTML = "";
+  en.forEach(v => {
+    const opt = document.createElement("option");
+    opt.value = v.voiceURI;
+    const nice = scoreVoice(v) >= 8 ? " ⭐" : "";
+    opt.textContent = `${v.name} (${v.lang})${nice}`;
+    if (v.voiceURI === current) opt.selected = true;
+    sel.appendChild(opt);
+  });
+}
+
+function previewVoice() {
+  const uri = document.getElementById("voiceSelect").value;
+  const v = englishVoices().find(x => x.voiceURI === uri);
+  const u = new SpeechSynthesisUtterance("Hi! I'm your English buddy. Let's have fun together!");
+  u.lang = "en-US"; u.rate = 0.95;
+  if (v) u.voice = v;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(u);
+}
+
 function toggleSettings() { document.getElementById("settings").classList.toggle("hidden"); }
 function saveSettings() {
   state.apiKey = document.getElementById("apiKeyInput").value.trim();
   state.model = document.getElementById("modelSelect").value;
+  state.voiceURI = document.getElementById("voiceSelect").value;
   save();
   toggleSettings();
 }
@@ -349,9 +411,11 @@ window.addEventListener("DOMContentLoaded", () => {
   recognition = setupRecognition();
   renderMenu();
   renderSettings();
+  renderVoices();
 
   document.getElementById("settingsBtn").onclick = toggleSettings;
   document.getElementById("saveSettings").onclick = saveSettings;
+  document.getElementById("previewVoice").onclick = previewVoice;
   document.getElementById("backBtn").onclick = backToMenu;
   document.getElementById("micBtn").onclick = toggleMic;
   document.getElementById("sendBtn").onclick = () => handleKidInput(document.getElementById("textInput").value);
@@ -359,8 +423,11 @@ window.addEventListener("DOMContentLoaded", () => {
     if (e.key === "Enter") handleKidInput(e.target.value);
   });
 
-  // 某些瀏覽器要等 voices 載入
-  if ("speechSynthesis" in window) window.speechSynthesis.getVoices();
+  // 語音清單常常是非同步載入，載好後重新填選單
+  if ("speechSynthesis" in window) {
+    window.speechSynthesis.getVoices();
+    window.speechSynthesis.onvoiceschanged = renderVoices;
+  }
 
   if (!state.apiKey) toggleSettings(); // 第一次自動打開設定
 });

@@ -26,6 +26,13 @@
       <select id="modelSelect"></select>
       <div class="hint">語音對話講求即時，建議先用 Haiku；想要更聰明的引導再換 Opus。</div>
 
+      <label for="voiceSelect">AI 的聲音</label>
+      <div style="display:flex;gap:8px;">
+        <select id="voiceSelect" style="flex:1;"></select>
+        <button id="previewVoice" class="send" type="button">🔊 試聽</button>
+      </div>
+      <div class="hint">名字有 (Premium)/(Enhanced) 或 Google 的最自然。Mac 內建可下載「增強版」語音（系統設定 → 輔助使用 → 朗讀內容 → 系統語音 → 管理語音）。</div>
+
       <div style="margin-top:16px;display:flex;gap:10px;">
         <button id="saveSettings" class="mic-btn">儲存</button>
       </div>
